@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -37,31 +37,7 @@
 </head>
 
 <body class="homepage-redesign">
-
-  <!-- ======= Header ======= -->
-  <header id="header" class="header d-flex align-items-center">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-
-      <a href="{{ route('home') }}" class="logo d-flex align-items-center">
-        <h1>ECK<span>in</span>TOSH<span>.</span></h1>
-      </a>
-
-      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a href="{{ route('home') }}" class="active">Home</a></li>
-          <li><a href="{{ route('about') }}">About</a></li>
-          <li><a href="{{ route('services') }}">Services</a></li>
-          <li><a href="{{ route('projects') }}">Projects</a></li>
-          <li><a href="{{ route('blog') }}">Blog</a></li>
-          <li><a href="{{ route('contact') }}">Contact</a></li>
-          <li class="nav-cta"><a href="#consultation">Start a Project</a></li>
-        </ul>
-      </nav><!-- .navbar -->
-
-    </div>
-  </header><!-- End Header -->
+  <x-site-header />
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="hero hero-home">

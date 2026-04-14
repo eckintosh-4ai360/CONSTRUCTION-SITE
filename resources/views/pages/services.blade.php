@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -34,51 +34,7 @@
 </head>
 
 <body>
-
-  <!-- ======= Header ======= -->
-  <header id="header" class="header d-flex align-items-center">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-
-      <a href="{{ route('home') }}" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="{{ asset('assets/img/logo.png') }}" alt=""> -->
-        <h1>ECK<span>in</span>TOSH<span>.</span></h1>
-      </a>
-
-      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a href="{{ route('home') }}">Home</a></li>
-          <li><a href="{{ route('about') }}">About</a></li>
-          <li><a href="{{ route('services') }}" class="active">Services</a></li>
-          <li><a href="{{ route('projects') }}">Projects</a></li>
-          <li><a href="{{ route('blog') }}">Blog</a></li>
-          <li class="dropdown"><a href="#"><span>Services</span> <i
-                class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
-              <li><a href="{{ route('service-details') }}">New Construction</a></li>
-              <li class="dropdown"><a href="#"><span>Commercial Services</span> <i
-                    class="bi bi-chevron-down dropdown-indicator"></i></a>
-                <ul>
-                  <li><a href="{{ route('service-details') }}">Office Buildings</a></li>
-                  <li><a href="{{ route('service-details') }}">Retail Spaces</a></li>
-                  <li><a href="{{ route('service-details') }}">Mixed-Use Developments</a></li>
-                  <li><a href="{{ route('service-details') }}">Custom Solutions</a></li>
-                  <li><a href="{{ route('service-details') }}">Project Management</a></li>
-                </ul>
-              </li>
-              <li><a href="{{ route('service-details') }}">Residential Construction</a></li>
-              <li><a href="{{ route('service-details') }}">Renovations</a></li>
-              <li><a href="{{ route('service-details') }}">Industrial Projects</a></li>
-            </ul>
-          </li>
-          <li><a href="{{ route('contact') }}">Contact</a></li>
-        </ul>
-      </nav><!-- .navbar -->
-
-    </div>
-  </header><!-- End Header -->
+  <x-site-header />
 
   <main id="main">
 

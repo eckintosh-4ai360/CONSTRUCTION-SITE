@@ -19,6 +19,7 @@
       thisForm.querySelector('.loading').classList.add('d-block');
       thisForm.querySelector('.error-message').classList.remove('d-block');
       thisForm.querySelector('.sent-message').classList.remove('d-block');
+      toggleSubmit(thisForm, true);
 
       let formData = new FormData( thisForm );
 
@@ -45,22 +46,44 @@
   });
 
   function php_email_form_submit(thisForm, action, formData) {
+    const tokenInput = thisForm.querySelector('input[name="_token"]');
+    const csrfMeta = document.querySelector('meta[name="csrf-token"]');
+    const csrfToken = tokenInput
+      ? tokenInput.value
+      : (csrfMeta ? csrfMeta.getAttribute('content') : null);
+    const headers = {
+      'Accept': 'text/plain, application/json',
+      'X-Requested-With': 'XMLHttpRequest'
+    };
+
+    if (csrfToken) {
+      headers['X-CSRF-TOKEN'] = csrfToken;
+    }
+
     fetch(action, {
       method: 'POST',
       body: formData,
-      headers: {'X-Requested-With': 'XMLHttpRequest'}
+      credentials: 'same-origin',
+      headers: headers
     })
-    .then(response => {
-      return response.text();
-    })
-    .then(data => {
+    .then(async response => {
+      const data = (await response.text()).trim();
+
       thisForm.querySelector('.loading').classList.remove('d-block');
-      if (data.trim() == 'OK') {
-        thisForm.querySelector('.sent-message').classList.add('d-block');
-        thisForm.reset(); 
-      } else {
-        throw new Error(data ? data : 'Form submission failed and no error message returned from: ' + action); 
+      toggleSubmit(thisForm, false);
+
+      if (!response.ok) {
+        throw new Error(normalizeErrorMessage(data, 'We could not submit the form right now. Please try again.'));
       }
+
+      if (data === 'OK') {
+        thisForm.querySelector('.sent-message').classList.add('d-block');
+        thisForm.reset();
+
+        return;
+      }
+
+      throw new Error(data ? data : 'Form submission failed and no error message returned from: ' + action);
     })
     .catch((error) => {
       displayError(thisForm, error);
@@ -69,8 +92,27 @@
 
   function displayError(thisForm, error) {
     thisForm.querySelector('.loading').classList.remove('d-block');
-    thisForm.querySelector('.error-message').innerHTML = error;
+    toggleSubmit(thisForm, false);
+    thisForm.querySelector('.error-message').innerHTML = error instanceof Error ? error.message : error;
     thisForm.querySelector('.error-message').classList.add('d-block');
+  }
+
+  function normalizeErrorMessage(data, fallbackMessage) {
+    const plainText = data.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+
+    if (plainText && plainText.length <= 300) {
+      return plainText;
+    }
+
+    return fallbackMessage;
+  }
+
+  function toggleSubmit(thisForm, isSubmitting) {
+    const submitButton = thisForm.querySelector('button[type="submit"]');
+
+    if (submitButton) {
+      submitButton.disabled = isSubmitting;
+    }
   }
 
 })();

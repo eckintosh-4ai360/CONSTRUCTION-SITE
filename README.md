@@ -7,6 +7,48 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## ECKINTOSH Mail Setup
+
+The website already includes two working Laravel mail endpoints:
+
+- `POST /contact` for the contact page form
+- `POST /quote` for the home page consultation form
+
+Both routes send mail through Laravel's mailer, so the last setup step is putting your real SMTP credentials into `.env`.
+
+### SMTP `.env` values
+
+Update your local `.env` with your provider's details:
+
+```env
+MAIL_MAILER=smtp
+MAIL_SCHEME=smtp
+MAIL_HOST=smtp.your-provider.com
+MAIL_PORT=587
+MAIL_USERNAME=your-smtp-username
+MAIL_PASSWORD=your-smtp-password
+MAIL_TIMEOUT=30
+MAIL_FROM_ADDRESS="no-reply@yourdomain.com"
+MAIL_FROM_NAME="${APP_NAME}"
+MAIL_TO_ADDRESS="info@yourdomain.com"
+CONTACT_FORM_TO_ADDRESS="${MAIL_TO_ADDRESS}"
+QUOTE_FORM_TO_ADDRESS="${MAIL_TO_ADDRESS}"
+```
+
+Notes:
+
+- Use `MAIL_SCHEME=smtps` with port `465` if your provider requires SSL.
+- Older SMTP guides may give you `MAIL_ENCRYPTION=tls` or `MAIL_ENCRYPTION=ssl`; this project accepts those too.
+- `CONTACT_FORM_TO_ADDRESS` and `QUOTE_FORM_TO_ADDRESS` can be different if you want those messages delivered to separate inboxes.
+
+### Verify the forms
+
+Run the mail feature tests:
+
+```bash
+php artisan test --filter=InquiryFormTest
+```
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:

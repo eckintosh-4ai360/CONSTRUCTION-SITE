@@ -288,6 +288,30 @@ section {
   color: var(--color-primary);
 }
 
+.site-header .navbar>ul>li.nav-cta {
+  padding-left: 26px;
+}
+
+.site-header .navbar>ul>li.nav-cta>a:before {
+  display: none;
+}
+
+.site-header .navbar .nav-cta a,
+.site-header .navbar .nav-cta a:focus {
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--color-primary) 0%, #f3b977 100%);
+  color: #12191d;
+  font-weight: 700;
+  box-shadow: 0 12px 24px rgba(201, 133, 63, 0.26);
+}
+
+.site-header .navbar .nav-cta a:hover,
+.site-header .navbar .nav-cta a:focus:hover {
+  color: #12191d;
+  background: linear-gradient(135deg, #f3b977 0%, var(--color-primary) 100%);
+}
+
 /*--------------------------------------------------------------
 # Desktop Navigation
 --------------------------------------------------------------*/
@@ -545,6 +569,16 @@ section {
     inset: 0;
     background: rgba(0, 0, 0, 0.6);
     z-index: 9996;
+  }
+
+  .site-header .navbar .nav-cta a,
+  .site-header .navbar .nav-cta a:focus {
+    margin: 14px 20px 0;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--color-primary) 0%, #f3b977 100%);
+    color: #12191d;
+    font-weight: 700;
+    justify-content: center;
   }
 }
 
@@ -3525,6 +3559,46 @@ section {
 .home-consultation__form p {
   margin-bottom: 22px;
   color: var(--home-muted);
+}
+
+.home-consultation__form .error-message {
+  display: none;
+  color: #fff;
+  background: #df1529;
+  text-align: left;
+  padding: 15px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.home-consultation__form .sent-message {
+  display: none;
+  color: #fff;
+  background: #059652;
+  text-align: center;
+  padding: 15px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.home-consultation__form .loading {
+  display: none;
+  background: #fff;
+  text-align: center;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.home-consultation__form .loading:before {
+  content: "";
+  display: inline-block;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  margin: 0 10px -6px 0;
+  border: 3px solid #059652;
+  border-top-color: #eee;
+  animation: animate-loading 1s linear infinite;
 }
 
 .home-consultation__form input,
