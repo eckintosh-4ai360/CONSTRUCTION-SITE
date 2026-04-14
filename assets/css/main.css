@@ -288,6 +288,27 @@ section {
   color: var(--color-primary);
 }
 
+.site-header {
+  --site-header-accent: #c9853f;
+  --site-header-accent-soft: #e6b272;
+  padding: 18px 0;
+}
+
+.site-header .container-fluid {
+  padding: 16px 24px;
+  background: rgba(9, 14, 18, 0.58);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  backdrop-filter: blur(18px);
+  box-shadow: 0 18px 40px rgba(5, 8, 10, 0.2);
+}
+
+.site-header .logo h1 {
+  font-size: 22px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .site-header .navbar>ul>li.nav-cta {
   padding-left: 26px;
 }
@@ -300,7 +321,7 @@ section {
 .site-header .navbar .nav-cta a:focus {
   padding: 12px 18px;
   border-radius: 999px;
-  background: linear-gradient(135deg, var(--color-primary) 0%, #f3b977 100%);
+  background: linear-gradient(135deg, var(--site-header-accent) 0%, var(--site-header-accent-soft) 100%);
   color: #12191d;
   font-weight: 700;
   box-shadow: 0 12px 24px rgba(201, 133, 63, 0.26);
@@ -309,13 +330,23 @@ section {
 .site-header .navbar .nav-cta a:hover,
 .site-header .navbar .nav-cta a:focus:hover {
   color: #12191d;
-  background: linear-gradient(135deg, #f3b977 0%, var(--color-primary) 100%);
+  background: linear-gradient(135deg, var(--site-header-accent-soft) 0%, var(--site-header-accent) 100%);
 }
 
 /*--------------------------------------------------------------
 # Desktop Navigation
 --------------------------------------------------------------*/
 @media (min-width: 1280px) {
+  .site-header .navbar>ul>li {
+    padding: 10px 0 10px 24px;
+  }
+
+  .site-header .navbar a,
+  .site-header .navbar a:focus {
+    font-size: 13px;
+    letter-spacing: 0.12em;
+  }
+
   .navbar {
     padding: 0;
   }
@@ -571,14 +602,33 @@ section {
     z-index: 9996;
   }
 
+  .site-header .container-fluid {
+    padding: 14px 18px;
+  }
+
+  .site-header .navbar ul {
+    background: rgba(9, 13, 16, 0.92);
+    padding-top: 96px;
+  }
+
   .site-header .navbar .nav-cta a,
   .site-header .navbar .nav-cta a:focus {
     margin: 14px 20px 0;
     border-radius: 999px;
-    background: linear-gradient(135deg, var(--color-primary) 0%, #f3b977 100%);
+    background: linear-gradient(135deg, var(--site-header-accent) 0%, #e4b271 100%);
     color: #12191d;
     font-weight: 700;
     justify-content: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .site-header {
+    padding: 12px 0;
+  }
+
+  .site-header .container-fluid {
+    border-radius: 18px;
   }
 }
 
